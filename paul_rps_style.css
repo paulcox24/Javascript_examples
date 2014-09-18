@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  font: bold 18px "Avant Garde", Verdana, sans-serif;
+}
+
+html {
+  height: 100%;
+  background: white;
+  background-size: cover;
+}
+
+#gamefield {
+  width: 450px;
+  height: auto;
+  
+  margin: 100px auto;
+  padding: 20px 0 20px 20px;
+  
+  background: #7b7;
+  border-radius: 10px;
+  box-shadow: 0 4px #484;
+}
+
+.output {
+  height: 50px;
+  width: 410px;
+  border-radius: 5px;
+
+  float: left;
+  
+  padding: 0 10px;
+  margin: 0 0px 21px 0;
+  background: white;
+  
+  font-size: 17px;
+  line-height: 50px;
+  color: #555;
+  text-align: center;
+  letter-spacing: 1px;
+  box-shadow: inset 0 4px #484;
+}
+.keys, .top {overflow: hidden;}
+
+.keys span {
+  float: left;
+  position: relative;
+  top: 0;
+  
+  
+  
+  width: 132px;
+  height: 50px;
+  
+  background: #999;
+  border-radius: 10px;
+  
+  margin: 0 7px 7px 0;
+  
+  color: #fff;
+  line-height: 50px;
+  text-align: center;
+  box-shadow: 0 3px #666;
+  
+}

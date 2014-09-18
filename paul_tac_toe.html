@@ -1,0 +1,212 @@
+<head>
+  <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="paul_tic_style.css" />
+</head>
+<body>
+
+  
+  <div id="gamefield">
+    <h2>Tic-Tac-Toe<div class="clear">Clear board</div></h2>
+
+    <div class="board">
+      <div>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> 
+      <div>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> 
+      <div>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> 
+      <div class="message"></div> 
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var message = $('.message');
+    message.hide();
+  var empty_squares = $('#gamefield span:empty');
+  var all_squares = $('#gamefield span');
+  var computer_value = 'O';
+  var player_value = 'X';
+  var clear_board = $(".clear");
+
+  //resets all squares back to empty when clicked
+  //slides board up and queues html change 
+  clear_board.click(function(){
+    $('#gamefield span').html('');
+    message.slideUp();
+  });
+
+  // iterates with each button click
+  $.each(empty_squares, function( index, value) {
+    empty_squares[index].onclick = function() {
+      var square_value = $( value ).html();
+
+      // Changes the clicked square to X if it is empty. Prompts if it is not
+      if(square_value == ''){
+        $(value).html(player_value);
+        empty_squares = $('#gamefield span:empty');
+      }
+      else{
+        message.html("Can't play there").slideDown('fast').delay(700).slideUp('fast');
+        return false;
+      }
+
+      // When all squares are full game is over
+      if(empty_squares.length < 1){
+        message.html("Game Over: Stalemate").slideDown();
+      }
+      all_squares = $('#gamefield span');
+      if(evaluate_player(all_squares)){
+        return; 
+      }
+      else{
+        
+      };
+      
+      var computer_choice = empty_squares[Math.floor(Math.random() * empty_squares.length)];
+      var computer_choice_value = $(computer_choice).html();
+
+      //assigns new html with delay
+      
+      $(computer_choice)
+          .delay(300)
+          .queue(function(n){
+            $(this).html(computer_value);
+            n();  
+          });
+          
+      empty_squares = $('#gamefield span:empty');
+      all_squares = $('#gamefield span');
+      evaluate_computer(all_squares);      
+    }
+  })
+  var evaluate_player = function(all_squares){
+    //Player wins
+    //top row win
+    if( all_squares.eq(0).html() == all_squares.eq(1).html() 
+      && all_squares.eq(1).html() == all_squares.eq(2).html() 
+      && all_squares.eq(1).html() == player_value ){
+      message.html("Player Wins!").slideDown();
+      return false;
+    }
+    //middle row win
+    if( all_squares.eq(3).html() == all_squares.eq(4).html() 
+      && all_squares.eq(4).html() == all_squares.eq(5).html() 
+      && all_squares.eq(4).html() == player_value ){
+      message.html("Player Wins!").slideDown();
+      return false;
+    }
+    //bottom row win
+    if( all_squares.eq(6).html() == all_squares.eq(7).html() 
+      && all_squares.eq(7).html() == all_squares.eq(8).html() 
+      && all_squares.eq(7).html() == player_value ){
+      message.html("Player Wins!").slideDown();
+      return false;
+    }
+    //first column win
+    if( all_squares.eq(0).html() == all_squares.eq(3).html() 
+      && all_squares.eq(3).html() == all_squares.eq(6).html() 
+      && all_squares.eq(3).html() == player_value ){
+      message.html("Player Wins!").slideDown();
+      return false;
+    }
+    //second column win
+    if( all_squares.eq(1).html() == all_squares.eq(4).html() 
+      && all_squares.eq(7).html() == all_squares.eq(4).html() 
+      && all_squares.eq(7).html() == player_value ){
+      message.html("Player Wins!").slideDown();
+      return false;
+    }
+    //third column win
+    if( all_squares.eq(2).html() == all_squares.eq(5).html() 
+      && all_squares.eq(5).html() == all_squares.eq(8).html() 
+      && all_squares.eq(5).html() == player_value ){
+      message.html("Player Wins!").slideDown();
+      return false;
+    }
+    //down diagonal win
+    if( all_squares.eq(0).html() == all_squares.eq(4).html() 
+      && all_squares.eq(4).html() == all_squares.eq(8).html() 
+      && all_squares.eq(4).html() == player_value ){
+      message.html("Player Wins!").slideDown();
+      return false;
+    }
+    //up diagonal win
+    if( all_squares.eq(2).html() == all_squares.eq(4).html() 
+      && all_squares.eq(4).html() == all_squares.eq(6).html() 
+      && all_squares.eq(4).html() == player_value ){
+      message.html("Player Wins!").slideDown();
+      return false;
+    }
+  }  
+  var evaluate_computer = function(all_squares){    
+    //Computer wins
+    //top row win
+    if( all_squares.eq(0).html() == all_squares.eq(1).html() 
+      && all_squares.eq(1).html() == all_squares.eq(2).html() 
+      && all_squares.eq(1).html() == computer_value ){
+      message.html("Computer Wins!").slideDown();
+      return false;
+    }
+    //middle row win
+    if( all_squares.eq(3).html() == all_squares.eq(4).html() 
+      && all_squares.eq(4).html() == all_squares.eq(5).html() 
+      && all_squares.eq(4).html() == computer_value ){
+      message.html("Computer Wins!").slideDown();
+      return false;
+    }
+    //bottom row win
+    if( all_squares.eq(6).html() == all_squares.eq(7).html() 
+      && all_squares.eq(7).html() == all_squares.eq(8).html() 
+      && all_squares.eq(7).html() == computer_value ){
+      message.html("Computer Wins!").slideDown();
+      return false;
+    }
+    //first column win
+    if( all_squares.eq(0).html() == all_squares.eq(3).html() 
+      && all_squares.eq(3).html() == all_squares.eq(6).html() 
+      && all_squares.eq(3).html() == computer_value ){
+      message.html("Computer Wins!").slideDown();
+      return false;
+    }
+    //second column win
+    if( all_squares.eq(1).html() == all_squares.eq(4).html() 
+      && all_squares.eq(7).html() == all_squares.eq(4).html() 
+      && all_squares.eq(7).html() == computer_value ){
+      message.html("Computer Wins!").slideDown();
+      return false;
+    }
+    //third column win
+    if( all_squares.eq(2).html() == all_squares.eq(5).html() 
+      && all_squares.eq(5).html() == all_squares.eq(8).html() 
+      && all_squares.eq(5).html() == computer_value ){
+      message.html("Computer Wins!").slideDown();
+      return false;
+    }
+    //down diagonal win
+    if( all_squares.eq(0).html() == all_squares.eq(4).html() 
+      && all_squares.eq(4).html() == all_squares.eq(8).html() 
+      && all_squares.eq(4).html() == computer_value ){
+      message.html("Computer Wins!").slideDown();
+      return false;
+    }
+    //up diagonal win
+    if( all_squares.eq(2).html() == all_squares.eq(4).html() 
+      && all_squares.eq(4).html() == all_squares.eq(6).html() 
+      && all_squares.eq(4).html() == computer_value ){
+      message.html("Computer Wins!").slideDown();
+      return false;
+    }
+  }
+});
+</script>

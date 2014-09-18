@@ -1,0 +1,132 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  /* Better text styling */
+  font: bold 18px "Trebuchet MS", Helvetica, sans-serif;
+}
+
+/* Finally adding some IE9 fallbacks for gradients to finish things up */
+
+/* A nice BG gradient */
+html {
+  height: 100%;
+  background: white;
+  background-size: cover;
+}
+
+/* Using box shadows to create 3D effects */
+#calculator {
+  width: 400px;
+  height: auto;
+  
+  margin: 100px auto;
+  padding: 20px ;
+  
+  background: gray;
+  border-radius: 10px;
+}
+
+
+
+/* Inset shadow on the screen to create indent */
+.screen {
+  height: 40px;
+  width: 360px;
+  border-radius: 5px;
+
+  float: left;
+  
+  padding: 0 10px;
+  margin: 0 0px 11px 0;
+  background: darkgray;
+  
+  /* Typography */
+  font-size: 17px;
+  line-height: 40px;
+  color: white;
+  text-align: right;
+  letter-spacing: 1px;
+  box-shadow: inset 0 3px #666;
+}
+
+/* Clear floats */
+.keys, .top {overflow: hidden;}
+
+/* Applying same to the keys */
+.keys span {
+  float: left;
+  position: relative;
+  top: 0;
+  
+  
+  
+  width: 54px;
+  height: 50px;
+  
+  background: white;
+  border-radius: 10px;
+  
+  margin: 0 7px 11px 0;
+  
+  color: #888;
+  line-height: 50px;
+  text-align: center;
+  box-shadow: 0 3px #666;
+  
+  /* prevent selection of text inside keys */
+  user-select: none;
+  
+  /* Smoothing out hover and active states using css3 transitions */
+  transition: all 0.2s ease;
+}
+
+/* Remove right margins from operator keys */
+/* style different type of keys (operators/evaluate/clear) differently */
+.keys span.operator {
+  background: #e0f0F5;
+  box-shadow: 0 4px #809095;
+}
+
+.keys span.eval {
+  background: #b1f192;
+  color: #555;
+  width: 115px;
+  box-shadow: 0 3px #71a142;
+  margin: 0 0 11px 0;
+
+}
+
+.keys span.clear {
+  background: #f1f192;
+  color: #555;
+  width: 115px;
+  box-shadow: 0 3px #b1b132;
+  margin: 0 0 11px 0;
+}
+.keys span.logo {
+  background: transparent;
+  color: #fff;
+  font-family: Courier;
+  font-size: 16px;
+  width: 115px;
+  margin: 0 0 11px 0;
+  text-align: center;  
+  box-shadow: none;
+
+}
+
+
+
+
+/* Some hover effects */
+
+
+/* Simulating "pressed" effect on active state of the keys by removing the box-shadow and moving the keys down a bit */
+.keys span.clear:active {
+  top: 5px;
+  box-shadow: 0 0px #b1b132;
+
+}

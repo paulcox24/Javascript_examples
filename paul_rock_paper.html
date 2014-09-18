@@ -1,0 +1,71 @@
+<head>
+  <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="paul_rps_style.css" />
+</head>
+<body>
+
+  <div id="gamefield">
+    <div class="top">
+      <div class="output">Choose your draw</div>
+    </div>
+    <div class="keys">
+      <span class="operand">Rock</span>
+      <span class="operand">Paper</span>
+      <span class="operand">Scissors</span>
+    </div>  
+  </div>
+
+</body>
+
+<script type="text/javascript">
+var inputs = $('#gamefield span');
+var draws = ['Rock','Paper','Scissors'];
+
+$.each( inputs, function( index, draw){
+  inputs[index].onclick = function() {
+    var random_draw = draws[Math.floor(Math.random()*draws.length)];
+    var draw_value = $( draw ).html();
+    var game_screen = $('.output');
+    var game_screen_value = game_screen.html();
+    
+    if(draw_value == draws[0]){
+
+      if(random_draw == draws[1]){
+        game_screen.html("Computer beats " + draw_value + " with " + random_draw)
+      }
+      else if(random_draw == draws[2]){
+        game_screen.html("You beat " + random_draw + " with " +draw_value)
+      }
+      else
+        game_screen.html("Draw, both " + draw_value)
+
+    }
+    else if(draw_value == draws[1]){
+      
+      if(random_draw == draws[2]){
+        game_screen.html("Computer beats " + draw_value + " with " + random_draw)
+      }
+      else if(random_draw == draws[0]){
+        game_screen.html("You beat " + random_draw + " with " +draw_value)
+      }
+      else
+        game_screen.html("Draw, both " + draw_value)
+
+    }
+    else if(draw_value == draws[2]){
+     
+      if(random_draw == draws[0]){
+        game_screen.html("Computer beats " + draw_value + " with " + random_draw)
+      }
+      else if(random_draw == draws[1]){
+        game_screen.html("You beat " + random_draw + " with " +draw_value)
+      }
+      else
+        game_screen.html("Draw, both " + draw_value)
+    }
+  } 
+})
+
+
+
+</script>
