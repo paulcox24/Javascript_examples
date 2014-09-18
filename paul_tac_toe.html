@@ -46,49 +46,18 @@ $(document).ready(function(){
     message.slideUp();
   });
 
-  // iterates with each button click
-  $.each(empty_squares, function( index, value) {
-    empty_squares[index].onclick = function() {
-      var square_value = $( value ).html();
-
-      // Changes the clicked square to X if it is empty. Prompts if it is not
-      if(square_value == ''){
-        $(value).html(player_value);
-        empty_squares = $('#gamefield span:empty');
-      }
-      else{
-        message.html("Can't play there").slideDown('fast').delay(700).slideUp('fast');
-        return false;
-      }
-
-      // When all squares are full game is over
-      if(empty_squares.length < 1){
-        message.html("Game Over: Stalemate").slideDown();
-      }
-      all_squares = $('#gamefield span');
-      
-      
-      var computer_choice = empty_squares[Math.floor(Math.random() * empty_squares.length)];
-      var computer_choice_value = $(computer_choice).html();
-
-      //assigns new html with delay
-      $(computer_choice).html(computer_value);
-      empty_squares = $('#gamefield span:empty');
-      all_squares = $('#gamefield span');
-      
-      if(evaluate_winner(all_squares)){
-        var winner = evaluate_winner(all_squares);
-        if(winner == player_value){
-          message.html("Player Wins!").slideDown();
-        }
-        else{
-          message.html("Computer Wins!").slideDown();
-        }
-      return false;
-      }    
-    }
-  });
   
+  
+  var computer_turn = function(empty_squares){
+    var computer_choice = empty_squares[Math.floor(Math.random() * empty_squares.length)];
+    var computer_choice_value = $(computer_choice).html();
+
+    //assigns new html with delay
+    $(computer_choice).html(computer_value);
+    empty_squares = $('#gamefield span:empty');
+    
+  };
+
   var evaluate_winner = function(all_squares){
     //Player wins
     //top row win
@@ -140,6 +109,44 @@ $(document).ready(function(){
       return all_squares.eq(4).html();
       
     }
-  }
+  };
+
+  // iterates with each button click
+  $.each(empty_squares, function( index, value) {
+    empty_squares[index].onclick = function() {
+      var square_value = $( value ).html();
+
+      // Changes the clicked square to X if it is empty. Prompts if it is not
+      if(square_value == ''){
+        $(value).html(player_value);
+        empty_squares = $('#gamefield span:empty');
+      }
+      else{
+        message.html("Can't play there").slideDown('fast').delay(700).slideUp('fast');
+        return false;
+      }
+
+      // When all squares are full game is over
+      if(empty_squares.length < 1){
+        message.html("Game Over: Stalemate").slideDown();
+      }
+      
+      if(!evaluate_winner(all_squares)){
+        computer_turn(empty_squares);
+      }  
+      all_squares = $('#gamefield span');
+      
+      if(evaluate_winner(all_squares)){
+        var winner = evaluate_winner(all_squares);
+        if(winner == player_value){
+          message.html("Player Wins!").slideDown();
+        }
+        else{
+          message.html("Computer Wins!").slideDown();
+        }
+      return false;
+      }    
+    }
+  });
 });
 </script>
