@@ -1,0 +1,22 @@
+ 
+Number 1: <input id="number1"><br>
+<input type="radio" name="operand" value="+">+
+<input type="radio" name="operand" value="-">-<br>
+<input type="radio" name="operand" value="/">&divide;
+<input type="radio" name="operand" value="*">x<br>
+Number 2: <input id="number2"><br>
+Result: <input id="result"><br>
+<button id="submit">Submit</button><br>
+
+<script>
+var submit_button = document.querySelector('#submit');
+
+submit_button.onclick = function() {
+  var number1 = document.querySelector('#number1').value;
+  var number2 = document.querySelector('#number2').value;
+  var operand = document.querySelector('input[name = "operand"]:checked').value;
+  var result = eval(number1 + operand + number2);
+  document.querySelector('#result').value = result;
+  // alert( eval(number1 + operand + number2) );
+};
+</script>
