@@ -1,0 +1,108 @@
+<script type="text/javascript">
+
+/* Function that creates methods called method */
+Function.prototype.method = function(name, fn) {
+  this.prototype[name] = fn;
+};
+
+//* We now have a Form class*/
+var Form = function(){  
+    // ...
+};
+
+// * Now using the .method method we created above to create methods */
+Form.method('validate', function(){
+  console.log('Look ma! Validating!');
+});
+
+Form.method('poop', function(){
+  console.log('Look ma! Pooping');
+});
+
+/* Using the .prototype method */
+// Form.prototype.validate = function(){
+//     console.log('Look ma! Validating!');
+// };
+
+/* Alternatively */
+// Form.prototype[‘validate’] = function(){
+//   console.log('Look ma! Validating!');
+// }
+
+/* Alternatively - creating multiple methods at once*/
+// Form.prototype = {
+//   validate: function(){
+//   console.log('Look ma! Validating!');
+//   }
+// };
+//
+
+/* Functions can be anonymous.. and executed immediately!!! */ 
+// (function(){
+//   var first_operand = 2;
+//   var second_operand = 3;
+//   alert(first_operand * second_operand);
+// })();
+
+/* Anonymous, executed and parameterized... */ 
+// (function(first_operand, second_operand){
+//   alert(first_operand * second_operand);
+// })(2, 4);
+
+/* and save the result */
+// var result = (function(first_operand, second_operand){
+//   return(first_operand * second_operand);
+// })(2, 4);
+// console.log(result);
+
+var operation; // Empty var
+(function(){
+  var first_operand = 2;
+  var second_operand = 3;
+  operation = function(){
+   return first_operand * second_operand;
+  };
+})(); // Execute the anonymous function
+console.log(operation()); // Execute scoped function in the closure
+
+
+/* DO try this at home */
+var myContactForm = new Form();
+myContactForm.validate();
+myContactForm.poop();
+
+/* Class Student. */
+var Student = function(name, score) {
+  this.name = name;
+  this.score = score;
+};
+Student.prototype = {
+  getName: function() {
+    return this.name;
+  },
+  getScore: function() {
+    return this.score;
+  }
+};
+ 
+/* Instantiate the class. */
+ 
+var carlos = new Student('Carlos', 93);
+var jason = new Student('Jason', 80);
+var alice = new Student('Alice', 59);
+ 
+/* Modify the class. */
+ 
+Student.prototype.getGreeting = function() {
+  return 'Hola ' + this.getName() + '!';
+};
+ 
+/* Modify a specific instance. */
+ 
+alice.displayGreeting = function() {
+  alert(this.getGreeting());
+};
+
+
+
+</script>
