@@ -1,5 +1,5 @@
-Number 1: <input id="number1"><br>
-Number 2: <input id="number2"><br>
+Number 1: <input id="number1" type="number"><br>
+Number 2: <input id="number2" type="number"><br>
 <button id="add">+</button>
 <button id="subtract">-</button>
 <button id="multiply">x</button>
@@ -14,32 +14,33 @@ Result: <div class="result"></div>
   var $multiply = $("#multiply");
   var $divide = $("#divide");
 
+  function get_numbers(){
+    number1 = Number($('#number1').val());
+    number2 = Number($('#number2').val());
+  }
+
   $add.click(function() {
-    var $number1 = $('#number1').val();
-    var $number2 = $('#number2').val();
-    var sentence = $number1 + "+" + $number2
-    $('.result').html( eval( sentence ) );
+    get_numbers();
+    var result = number1 + number2
+    $('.result').html( result );
   });
 
   $subtract.click(function() {
-    var $number1 = $('#number1').val();
-    var $number2 = $('#number2').val();
-    var sentence = $number1 + "-" + $number2
-    $('.result').html( eval( sentence ) );
+    get_numbers();
+    var result = number1 - number2
+    $('.result').html( result );
   });
 
   $multiply.click(function() {
-    var $number1 = $('#number1').val();
-    var $number2 = $('#number2').val();
-    var sentence = $number1 + "*" + $number2
-    $('.result').html( eval( sentence ) );
+    get_numbers();
+    var result = number1 * number2
+    $('.result').html( result );
   });
 
   $divide.click(function() {
-    var $number1 = $('#number1').val();
-    var $number2 = $('#number2').val();
-    var sentence = $number1 + "/" + $number2
-    $('.result').html( eval( sentence ) );
+    get_numbers();
+    var result = number1 / number2
+    $('.result').html( result );
   });
 
 </script>
