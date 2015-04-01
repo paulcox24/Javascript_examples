@@ -15,9 +15,9 @@ $(function() {
       }
       else if($button_value == '='){
         var $equation = $calc_screen_value;
-        
-        if($equation)
-        $calc_screen.html( eval($equation) );
+        if($equation){
+          $calc_screen.html( eval($equation) );
+        }
       }
       else{
         $calc_screen.append( $button_value )
