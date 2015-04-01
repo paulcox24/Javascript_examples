@@ -18,11 +18,11 @@
 </body>
 
 <script type="text/javascript">
-var inputs = $('#gamefield span');
+var $inputs = $('#gamefield span');
 var draws = ['Rock','Paper','Scissors'];
 
-$.each( inputs, function( index, draw){
-  inputs[index].onclick = function() {
+$inputs.each(function( index, draw){
+  $( draw ).click(function() {
     var random_draw = draws[Math.floor(Math.random()*draws.length)];
     var draw_value = $( draw ).html();
     var game_screen = $('.output');
@@ -63,8 +63,8 @@ $.each( inputs, function( index, draw){
       else
         game_screen.html("Draw, both " + draw_value)
     }
-  } 
-})
+  }); 
+});
 
 
 
